@@ -12,6 +12,7 @@ import { UsersModule } from './users/users.module';
   imports: [
     CatsModule,
     ProductsModule,
+    AuthModule,
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
