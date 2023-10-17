@@ -20,17 +20,20 @@ export class Product {
   @Prop({ required: true })
   category: string;
 
-  @Prop({ required: true })
+  @Prop({})
   brand: string;
 
   @Prop({ required: true })
   countInStock: number;
 
-  @Prop({ required: true })
+  @Prop({})
   rating: number;
 
-  @Prop({ required: true })
+  @Prop({})
   numReviews: number;
+
+  @Prop({})
+  hide: boolean;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);
