@@ -1,15 +1,20 @@
 import { Injectable } from '@nestjs/common';
 
-export type User = any;
+export type User = {
+  id: number;
+  name: string;
+  username: string;
+  password: string;
+};
 
 @Injectable()
 export class UsersService {
   private readonly users = [
     {
       id: 1,
-      name: 'John Doe',
-      username: 'admin',
-      password: 'nen-huong-thom',
+      name: 'Admin',
+      username: process.env.ADMIN_USERNAME,
+      password: process.env.ADMIN_PASSWORD,
     },
   ];
 
