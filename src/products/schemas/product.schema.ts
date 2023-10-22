@@ -21,6 +21,9 @@ export class Product {
   category: string;
 
   @Prop({})
+  images: string[];
+
+  @Prop({})
   brand: string;
 
   @Prop({ required: true })
