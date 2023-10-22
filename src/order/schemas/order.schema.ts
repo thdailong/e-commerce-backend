@@ -1,4 +1,5 @@
-import { Prop, Schema } from '@nestjs/mongoose';
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { HydratedDocument } from 'mongoose';
 
 export type detailsOfOrder = {
   productId: string;
@@ -6,32 +7,49 @@ export type detailsOfOrder = {
   price: number;
 };
 
+export type address = {
+  province: string;
+  district: string;
+  ward: string;
+  address: string;
+};
+
+export type OrderDocument = HydratedDocument<Order>;
+
 @Schema()
 export class Order {
   @Prop({ required: true })
   name: string;
 
   @Prop({ required: true })
-  price: number;
-
-  @Prop({ required: true })
   dateCreated: Date;
 
-  @Prop({ required: true })
+  @Prop({
+    type: [{ productId: String, quantity: Number, price: Number }],
+    required: true,
+  })
   details: detailsOfOrder[];
+
+  @Prop({ required: true })
+  shippingFee: number;
+
+  @Prop()
+  totalFee: number;
 
   @Prop({ required: true })
   status: string;
 
-  @Prop({ required: true })
-  address: string;
+  @Prop({ type: Object, required: true })
+  address: address;
 
   @Prop({ required: true })
   phone: string;
 
-  @Prop({ required: true })
+  @Prop({})
   email: string;
 
-  @Prop({ required: true })
+  @Prop({})
   paymentMethod: string;
 }
+
+export const OrderSchema = SchemaFactory.createForClass(Order);
