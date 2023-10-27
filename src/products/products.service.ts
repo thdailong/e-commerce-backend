@@ -25,4 +25,22 @@ export class ProductsService {
   async deleteProduct(id: string) {
     await this.productModel.findByIdAndRemove(id);
   }
+
+  async updateProduct(id: string, product: CreateProductDto) {
+    await this.productModel.findByIdAndUpdate(id, product);
+  }
+
+  async getProductsByCategory(category: string): Promise<Product[]> {
+    return this.productModel.find({ category }).exec();
+  }
+
+  async getProductByOil(): Promise<Product[]> {
+    return this.productModel.find({ isOil: true }).exec();
+  }
+
+  async searchProducts(query: string): Promise<Product[]> {
+    return this.productModel
+      .find({ name: { $regex: query, $options: 'i' } })
+      .exec();
+  }
 }
