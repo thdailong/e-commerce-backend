@@ -15,9 +15,6 @@ export class Product {
   description: string;
 
   @Prop({ required: true })
-  image: string;
-
-  @Prop({ required: true })
   category: string;
 
   @Prop({})
@@ -37,6 +34,9 @@ export class Product {
 
   @Prop({})
   hide: boolean;
+
+  @Prop({})
+  isOil: boolean;
 }
 
 export const ProductSchema = SchemaFactory.createForClass(Product);

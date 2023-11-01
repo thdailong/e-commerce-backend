@@ -8,9 +8,11 @@ export class CreateProductDto {
   @ApiProperty()
   description: string;
   @ApiProperty()
-  image: string;
+  images: string[];
   @ApiProperty()
   category: string;
   @ApiProperty()
   countInStock: number;
+  @ApiProperty()
+  isOil: boolean;
 }
